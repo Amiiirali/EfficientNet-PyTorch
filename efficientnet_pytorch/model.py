@@ -310,9 +310,9 @@ class EfficientNet(nn.Module):
         """
         # Convolution layers
         x = self.extract_features(inputs)
-        # Pooling and final linear layer
-        x = self._avg_pooling(x)
         if self._global_params.include_top:
+            # Pooling and final linear layer
+            x = self._avg_pooling(x)
             x = x.flatten(start_dim=1)
             x = self._dropout(x)
             x = self._fc(x)
@@ -373,7 +373,9 @@ class EfficientNet(nn.Module):
             A pretrained efficientnet model.
         """
         model = cls.from_name(model_name, num_classes=num_classes, **override_params)
-        load_pretrained_weights(model, model_name, weights_path=weights_path, load_fc=(num_classes == 1000), advprop=advprop)
+        _, global_params = get_model_params(model_name, override_params)
+        load_pretrained_weights(model, model_name, weights_path=weights_path, load_fc=(num_classes == 1000), advprop=advprop,
+                                include_top=global_params.include_top)
         model._change_in_channels(in_channels)
         return model
 

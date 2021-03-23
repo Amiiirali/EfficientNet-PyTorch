@@ -2,7 +2,8 @@
 
 ### Change
 
-Add the flag to the __init__ function to not define the last layers if `include_top=False`.
+Add the flag to the __init__ function to not define the last layers {avg_pooling, drop_out, fc} if `include_top=False`.
+
 
 ### Quickstart
 
