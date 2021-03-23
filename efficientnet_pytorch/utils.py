@@ -576,7 +576,7 @@ url_map_advprop = {
 # TODO: add the petrained weights url map of 'efficientnet-l2'
 
 
-def load_pretrained_weights(model, model_name, weights_path=None, load_fc=True, advprop=False, include_top=False):
+def load_pretrained_weights(model, model_name, weights_path=None, load_fc=True, advprop=False, include_top=True):
     """Loads pretrained weights from weights path or download using url.
 
     Args:
@@ -596,7 +596,7 @@ def load_pretrained_weights(model, model_name, weights_path=None, load_fc=True, 
         url_map_ = url_map_advprop if advprop else url_map
         state_dict = model_zoo.load_url(url_map_[model_name])
 
-    if load_fc:
+    if load_fc and include_top:
         ret = model.load_state_dict(state_dict, strict=False)
         assert not ret.missing_keys, 'Missing keys when loading pretrained weights: {}'.format(ret.missing_keys)
     else:
