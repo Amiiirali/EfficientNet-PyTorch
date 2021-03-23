@@ -1,5 +1,9 @@
 # EfficientNet PyTorch
 
+### Change
+
+Add the flag to the __init__ function to not define the last layers if `include_top=False`.
+
 ### Quickstart
 
 Install with `pip install efficientnet_pytorch` and load a pretrained EfficientNet with:
@@ -12,7 +16,7 @@ model = EfficientNet.from_pretrained('efficientnet-b0')
 
 #### Update (Aug 25, 2020)
 
-This update adds: 
+This update adds:
  * A new `include_top` (default: `True`) option ([#208](https://github.com/lukemelas/EfficientNet-PyTorch/pull/208))
  * Continuous testing with [sotabench](https://sotabench.com/)
  * Code quality improvements and fixes ([#215](https://github.com/lukemelas/EfficientNet-PyTorch/pull/215) [#223](https://github.com/lukemelas/EfficientNet-PyTorch/pull/223))
